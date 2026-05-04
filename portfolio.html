@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C. Rajashree</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #0e0e0e;
+  --ink-muted: #5a5a5a;
+  --ink-faint: #999;
+  --surface: #faf9f7;
+  --border: rgba(0,0,0,0.09);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 3rem;
+  background: rgba(250,249,247,0.95);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px; font-weight: 400; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink); text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; }
+.nav-links a {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 3rem 4rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-faint); margin-bottom: 1.8rem;
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(60px, 11vw, 110px);
+  font-weight: 300; line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 3rem;
+}
+.hero-name em { font-style: italic; }
+.hero-footer {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  border-top: 0.5px solid var(--border); padding-top: 1.5rem;
+}
+.hero-bio {
+  font-size: 12px; color: var(--ink-muted);
+  line-height: 1.9; letter-spacing: 0.02em;
+  max-width: 400px;
+}
+.hero-meta {
+  text-align: right;
+  font-size: 10px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-faint);
+  line-height: 2;
+}
+
+/* SECTIONS */
+section { border-bottom: 0.5px solid var(--border); }
+
+.section-inner { padding: 4.5rem 3rem; }
+
+.section-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 0.5px solid var(--border);
+  padding-bottom: 1rem; margin-bottom: 3.5rem;
+}
+.section-label {
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.section-index {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px; font-style: italic; color: var(--ink-faint);
+}
+
+/* WORK */
+.work-list { display: flex; flex-direction: column; }
+
+.work-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 80px;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.8rem 0;
+  border-bottom: 0.5px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.work-item:last-child { border-bottom: none; }
+.work-item:hover .work-title { letter-spacing: 0.04em; }
+.work-item:hover .work-arrow { opacity: 1; transform: translateX(4px); }
+
+.work-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; font-style: italic; color: var(--ink-faint);
+  grid-column: span 0;
+}
+.work-title-block { display: flex; flex-direction: column; gap: 4px; }
+.work-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--ink);
+  transition: letter-spacing 0.3s ease;
+}
+.work-sub {
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.work-type {
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.work-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; font-style: italic; color: var(--ink-faint);
+}
+.work-arrow {
+  font-size: 14px; color: var(--ink-faint);
+  opacity: 0; transform: translateX(0);
+  transition: all 0.25s ease;
+  text-align: right;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+.about-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; font-style: italic;
+  line-height: 1.6; color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+.about-body {
+  font-size: 13px; color: var(--ink-muted);
+  line-height: 1.9;
+}
+.about-stats { display: flex; flex-direction: column; gap: 0; }
+.stat-row {
+  display: flex; justify-content: space-between;
+  padding: 1.2rem 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.stat-row:first-child { border-top: 0.5px solid var(--border); }
+.stat-label {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.stat-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; font-weight: 400; color: var(--ink);
+}
+
+/* CONTACT */
+.contact-inner {
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+.contact-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 300; line-height: 1;
+  color: var(--ink);
+}
+.contact-heading em { font-style: italic; }
+.contact-links {
+  display: flex; flex-direction: column; gap: 0.8rem;
+  text-align: right;
+}
+.contact-link {
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-link:hover { color: var(--ink); }
+
+/* FOOTER */
+footer {
+  padding: 1.5rem 3rem;
+  display: flex; justify-content: space-between;
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+
+
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero, .section-inner { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .hero-name { font-size: 52px; }
+  .work-item { grid-template-columns: 1fr 80px; gap: 1rem; }
+  .work-type, .work-year { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .contact-inner { flex-direction: column; gap: 2rem; }
+  .contact-links { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">C. Rajashree</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <p class="hero-eyebrow">Portfolio — 2026</p>
+  <h1 class="hero-name">C. <em>Rajashree</em></h1>
+  <div class="hero-footer">
+    <p class="hero-bio">
+      Founder. Editor. Brand strategist.<br>
+      Building at the intersection of aesthetics, identity, and business.
+    </p>
+    <div class="hero-meta">
+      IIM Bangalore<br>
+      BBA — Digital Business Entrepreneurship<br>
+      Bangalore, India
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Selected Work</span>
+      <span class="section-index">03 projects</span>
+    </div>
+    <div class="work-list">
+
+      <a class="work-item" href="https://remarcaviar.github.io" target="_blank">
+        <div class="work-title-block">
+          <span class="work-title">Remarcaviar</span>
+          <span class="work-sub">Independent Fashion Journal</span>
+        </div>
+        <span class="work-type">Editorial</span>
+        <span class="work-year">2026 — Ongoing</span>
+        <span class="work-arrow">→</span>
+      </a>
+
+      <a class="work-item" href="https://remarcaviar.github.io/byriri-studio/" target="_blank">
+        <div class="work-title-block">
+          <span class="work-title">By Riri</span>
+          <span class="work-sub">Brand Positioning & Strategy Studio</span>
+        </div>
+        <span class="work-type">Brand Strategy</span>
+        <span class="work-year">2026 — Ongoing</span>
+        <span class="work-arrow">→</span>
+      </a>
+
+      <a class="work-item" href="pizza-colada-brand-identity-kit.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open Pizza Colada Brand Identity Kit PDF">
+        <div class="work-title-block">
+          <span class="work-title">Pizza Colada</span>
+          <span class="work-sub">Brand Identity Kit — By Riri Studio</span>
+        </div>
+        <span class="work-type">Brand Identity</span>
+        <span class="work-year">2026</span>
+        <span class="work-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">About</span>
+      <span class="section-index">—</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p class="about-text">"I build things that have a point of view."</p>
+        <p class="about-body">
+          I am a first-year BBA student at IIM Bangalore, studying Digital Business and Entrepreneurship. Alongside my academic work, I founded Remarcaviar, an independent fashion journal, and By Riri, a brand positioning and strategy studio. Every decision across both — editorial, visual, strategic — has been mine to make and mine to learn from.<br><br>
+          I am interested in the relationship between aesthetics and business: how visual language shapes perception, how brand identity is constructed, and how the two become inseparable in the brands that last.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-row">
+          <span class="stat-label">Institution</span>
+          <span class="stat-value">IIM Bangalore</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Program</span>
+          <span class="stat-value">BBA — Digital Business Entrepreneurship</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">GPA</span>
+          <span class="stat-value">8.07 / 10</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Pinterest</span>
+          <span class="stat-value">200K+ monthly viewers</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Certifications</span>
+          <span class="stat-value">Google Digital Marketing, Google UX, McKinsey Forward</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Selected</span>
+          <span class="stat-value">HPAIR 2026, LaunchX 2026, IYC13</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <h2 class="contact-heading">Get in<br><em>touch.</em></h2>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:rajashreec827@gmail.com">rajashreec827@gmail.com</a>
+        <a class="contact-link" href="https://linkedin.com/in/c-rajashree-16688733b" target="_blank">LinkedIn</a>
+        <a class="contact-link" href="https://remarcaviar.github.io" target="_blank">Remarcaviar</a>
+        <a class="contact-link" href="https://remarcaviar.github.io/byriri-studio/" target="_blank">By Riri Studio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>C. Rajashree — 2026</span>
+  <span>Bangalore, India</span>
+</footer>
+
+
+</body>
+</html>
